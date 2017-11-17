@@ -1,0 +1,63 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>CumEggsPerZone</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>monarchs.ZoneAgent</sourceType>
+  <inclTick>true</inclTick>
+  <inclBatchRun>true</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>10.0</start>
+    <interval>0.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>ONE_TIME</frequency>
+    <hashCode>696741342</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>ID</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>ID</id>
+        <className>monarchs.ZoneAgent</className>
+        <methodName>getID</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Area</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Area</id>
+        <className>monarchs.ZoneAgent</className>
+        <methodName>getArea</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Name</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Name</id>
+        <className>monarchs.ZoneAgent</className>
+        <methodName>getName</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>probEggs</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>probEggs</id>
+        <className>monarchs.ZoneAgent</className>
+        <methodName>getprobEggs</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Eggs</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Eggs</id>
+        <className>monarchs.ZoneAgent</className>
+        <methodName>getEggs</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

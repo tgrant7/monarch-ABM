@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<parameters>
+			<parameter name="numAgents" displayName="Number of Agents" type="int" 
+						defaultValue="25" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+			/>
+			
+			<parameter name="steplength" displayName="Step Length (m)" type="int" 
+						defaultValue="30" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+			/>
+			
+			<parameter name="eggsperlay" displayName="Eggs Laid Per Step" type="int" 
+						defaultValue="2" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+			/>
+			
+			<parameter name="mindir" displayName="Minimum Directionality (Good Habitat)" type="double" 
+						defaultValue="0.5" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+			/>
+			
+			<parameter name="maxdir" displayName="Maximum Directionality (Poor Habitat)" type="double" 
+						defaultValue="0.75" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+			/>
+			
+			<parameter name="probMoveRange" displayName="Range from max to min probMove (e.g., 0.09)" type="double"
+						defaultValue="0.09"
+						isReadOnly="false"
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+			
+			/>
+			
+			<parameter name="perception" displayName="Perception Distance (m)" type="int" 
+						defaultValue="50" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+			/>
+			
+			<parameter name="remembered" displayName="Number of Steps to Remember Polygons" type="int" 
+						defaultValue="100" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+			/>
+			
+			<parameter name="savecoords" displayName="Save monarch agent coordinates?" type="boolean" 
+						defaultValue="false" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter"
+									
+			/>
+			
+			
+			<parameter name="randomSeed" displayName="Default Random Seed" 
+			type="int" defaultValue="__NULL__" 
+			/>
+
+</parameters>

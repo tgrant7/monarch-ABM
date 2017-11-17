@@ -1,0 +1,17 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>CumEggsPerZone</name>
+  <dataSet>CumEggsPerZone</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>run</string>
+    <string>tick</string>
+    <string>ID</string>
+    <string>Name</string>
+    <string>probEggs</string>
+    <string>Area</string>
+    <string>Eggs</string>
+  </sourceIds>
+  <fileName>CumEggsPerZone.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

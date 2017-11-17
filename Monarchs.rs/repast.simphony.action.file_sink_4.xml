@@ -1,0 +1,19 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>Monarchs</name>
+  <dataSet>Monarchs</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>run</string>
+    <string>name</string>
+    <string>tick</string>
+    <string>EggsLaid</string>
+    <string>EggsToLay</string>
+    <string>TimesLaidEggs</string>
+    <string>cumSteps</string>
+    <string>cumDist</string>
+    <string>eggslaidsteps</string>
+  </sourceIds>
+  <fileName>Monarchs.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

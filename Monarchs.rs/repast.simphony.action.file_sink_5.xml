@@ -1,0 +1,13 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>CumEggs</name>
+  <dataSet>CumEggs</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>run</string>
+    <string>tick</string>
+    <string>CumEggs</string>
+  </sourceIds>
+  <fileName>CumEggs.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

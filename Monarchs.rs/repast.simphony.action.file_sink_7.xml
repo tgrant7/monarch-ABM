@@ -1,0 +1,16 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>Coords</name>
+  <dataSet>Coords</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>run</string>
+    <string>tick</string>
+    <string>Name2</string>
+    <string>MonXs</string>
+    <string>MonYs</string>
+    <string>ClassNames</string>
+  </sourceIds>
+  <fileName>Coords.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>
