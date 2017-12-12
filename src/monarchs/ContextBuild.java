@@ -88,9 +88,6 @@ public class ContextBuild implements ContextBuilder{
 
 		GeometryFactory fac = new GeometryFactory(); 
 		
-		// Dr. Hazel Parry's code:
-		// FUDGE WORKAROUND FOR REPAST BUG TO VISUALISE NETWORK!:
-		
 		/**
 		//init coords are in a field in middle of test shapefile
 		//for first shapefile
