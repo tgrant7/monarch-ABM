@@ -33,7 +33,6 @@ import repast.simphony.parameter.Parameters;
 import repast.simphony.query.space.gis.GeographyWithin;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.gis.GeographyParameters;
-import repast.simphony.space.gis.GeometryUtils;
 import repast.simphony.space.graph.Network;
 import repast.simphony.util.ContextUtils;
 
@@ -88,6 +87,9 @@ public class ContextBuild implements ContextBuilder{
 
 		GeometryFactory fac = new GeometryFactory(); 
 		
+		// Dr. Hazel Parry's code:
+		// FUDGE WORKAROUND FOR REPAST BUG TO VISUALISE NETWORK!:
+		
 		/**
 		//init coords are in a field in middle of test shapefile
 		//for first shapefile
@@ -101,7 +103,7 @@ public class ContextBuild implements ContextBuilder{
 		LineString ls = fac.createLineString(carray);
 		**/
 		
-		/**
+		///**
 		//for second shapefile and St Co shapefile
 		Coordinate c = new Coordinate(-93.61, 42.04);
 		Coordinate c1 = new Coordinate(-93.610000001, 42.04);
@@ -111,7 +113,7 @@ public class ContextBuild implements ContextBuilder{
 		carray[0]= new Coordinate(-93.61, 42.04);
 		carray[1]= new Coordinate(-93.610000001, 42.04);
 		LineString ls = fac.createLineString(carray);
-		**/
+		//**/
 		
 		/**
 		//for MS figure shapefile
@@ -137,7 +139,7 @@ public class ContextBuild implements ContextBuilder{
 		LineString ls = fac.createLineString(carray);
 		**/
 		
-		///**
+		/**
 		//for ToxSims shapefiles 
 		Coordinate c = new Coordinate(-93.43, 42.17);
 		Coordinate c1 = new Coordinate(-93.430000001, 42.17);
@@ -147,7 +149,7 @@ public class ContextBuild implements ContextBuilder{
 		carray[0]= new Coordinate(-93.43, 42.17);
 		carray[1]= new Coordinate(-93.430000001, 42.17);
 		LineString ls = fac.createLineString(carray);
-		//**/
+		**/
 		
 		/**
 		//for Teresa 2017 data shapefiles (99% sure)
@@ -280,8 +282,8 @@ public class ContextBuild implements ContextBuilder{
 			//Coordinate coord = new Coordinate(-93.5490 - 0.1043* Math.random(),
 			//		42.0030 + 0.0794 * Math.random());
 			//Story County
-			//Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
-			//		41.8634 + 0.3457 * Math.random());
+			Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
+					41.8634 + 0.3457 * Math.random());
 			//MS figure shapefile
 			//Coordinate coord = new Coordinate(-93.327 - 0.042* Math.random(),
 			//		42.09 + 0.0347 * Math.random());
@@ -289,8 +291,8 @@ public class ContextBuild implements ContextBuilder{
 			//Coordinate coord = new Coordinate(-93.4234 - 0.0412* Math.random(),
 			//		42.165 + 0.033 * Math.random());
 			//Tox Sims shapefiles
-			Coordinate coord = new Coordinate(-93.3819 - 0.0871* Math.random(),
-					42.1328 + 0.0649 * Math.random());
+			//Coordinate coord = new Coordinate(-93.3819 - 0.0871* Math.random(),
+			//		42.1328 + 0.0649 * Math.random());
 			//Teresa's 2017 data
 			//Coordinate coord = new Coordinate(-93.607 - 0.2175*Math.random(),
 			//		41.9312 + 0.21*Math.random());
@@ -391,7 +393,7 @@ public class ContextBuild implements ContextBuilder{
 		//2nd test shapefile
 		//loadFeatures("data/TestShapefile2latlon_sp.shp", context, geography);
 		//Full Story Co
-		//loadFeatures("data/StoryCoB19_sp.shp", context, geography);
+		loadFeatures("data/StoryCoB19_sp.shp", context, geography);
 		//Full Story Co with new probMove parameter - test case 1
 		//loadFeatures("data/StoryCo_probMove.shp", context, geography);
 		//Full Story Co with new probMove parameter - test case 2
@@ -405,7 +407,7 @@ public class ContextBuild implements ContextBuilder{
 		//Tox Sims Scen 1
 		//loadFeatures("data/ToxScen1B.shp", context, geography);
 		//Tox Sims Scen 2
-		loadFeatures("data/ToxScen2B.shp", context, geography);
+		//loadFeatures("data/ToxScen2B.shp", context, geography);
 		//Teresa's 2017 data
 		//loadFeatures("data/TeresaTestData2.shp", context, geography);
 		//MCSP7

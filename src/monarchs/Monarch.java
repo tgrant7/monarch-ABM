@@ -1,8 +1,6 @@
 package monarchs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.DoubleStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.geotools.geometry.jts.JTS;
@@ -14,20 +12,24 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.distance.DistanceOp;
+
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduleParameters;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.essentials.RepastEssentials;
+import repast.simphony.gis.util.GeometryUtil;
 import repast.simphony.query.space.gis.GeographyWithin;
 import repast.simphony.random.RandomHelper;
 import repast.simphony.space.gis.Geography;
-import repast.simphony.space.gis.GeometryUtils;
 import repast.simphony.space.graph.Network;
 import repast.simphony.util.ContextUtils;
-import cern.jet.random.Normal;
-
-import com.vividsolutions.jts.geom.*;
-import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 /**
  * A geolocated Monarch agent with a point location.
@@ -109,10 +111,10 @@ public class Monarch {
 	//}
 	
 	//Story County - slightly outside - used for most purposes
-	//static double xmin = -93.7005;
-	//static double xmax = -93.2300;
-	//static double ymin = 41.8605;
-	//static double ymax = 42.2107;
+	static double xmin = -93.7005;
+	static double xmax = -93.2300;
+	static double ymin = 41.8605;
+	static double ymax = 42.2107;
 	
 	//MS figure - 1/2 mile outside
 	//static double xmin = -93.38;
@@ -127,10 +129,10 @@ public class Monarch {
 	//static double ymax = 42.207;
 
 	//Tox Sims shapefiles
-	static double xmin = -93.48;
-	static double xmax = -93.37;
-	static double ymin = 42.124;
-	static double ymax = 42.207;
+	//static double xmin = -93.48;
+	//static double xmax = -93.37;
+	//static double ymin = 42.124;
+	//static double ymax = 42.207;
 
 	//Teresa's 2017 data
 	//static double xmin = -93.835;
@@ -270,7 +272,7 @@ public class Monarch {
 							}
 							
 							//create a buffer around the point of perception distance
-							Geometry pointBuffer = GeometryUtils.generateBuffer(geography, geom, perception);
+							Geometry pointBuffer = GeometryUtil.generateBuffer(geography, geom, perception);
 							//calculate area of intersection of buffer with zoneagent
 							Geometry intersection = pointBuffer.intersection(zonegeom);
 							
@@ -343,8 +345,8 @@ public class Monarch {
 						//if bounces too many times, that means it probably got stuck outside, so move to random loc inside
 						if (bouncecounter > 5){
 							//Story Co
-							//Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
-							//		41.8634 + 0.3457 * Math.random());
+							Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
+									41.8634 + 0.3457 * Math.random());
 							//MS figure
 							//Coordinate coord = new Coordinate(-93.327 - 0.042* Math.random(),
 							//		42.09 + 0.0347 * Math.random());
@@ -352,8 +354,8 @@ public class Monarch {
 							//Coordinate coord = new Coordinate(-93.4234 - 0.0412* Math.random(),
 							//		42.165 + 0.033 * Math.random());
 							//Tox Sims 
-							Coordinate coord = new Coordinate(-93.3819 - 0.0871* Math.random(),
-									42.124 + 0.082 * Math.random());
+							//Coordinate coord = new Coordinate(-93.3819 - 0.0871* Math.random(),
+							//		42.124 + 0.082 * Math.random());
 							//Teresa's 2017 Data
 							//Coordinate coord = new Coordinate(-93.607 - 0.2175*Math.random(),
 							//		41.9312 + 0.21*Math.random());
