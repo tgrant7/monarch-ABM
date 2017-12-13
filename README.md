@@ -5,7 +5,7 @@ For those unfamiliar with Eclipse and Repast Simphony, here is one way to get th
 
 Install Repast Simphony and Java SE Development Kit.  
 
-Copy files from GitHub to C:\RepastSimphony-2.5\models\
+Create a folder in C:\RepastSimphony-2.5\models\ called Monarchs.  Copy the files from GitHub to this folder.  
 
 In Repast Simphony, select File -> Import.  Choose General -> Projects from Folder or Archive.  Set the import source as:  C:\RepastSimphony-2.5\models\Monarchs.  Select the box for the Monarchs folder and hit Finish.  
 
