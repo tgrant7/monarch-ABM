@@ -1,7 +1,5 @@
 package monarchs;
 
-import gov.nasa.worldwind.geom.Intersection;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -87,9 +85,21 @@ public class ContextBuild implements ContextBuilder{
 
 		GeometryFactory fac = new GeometryFactory(); 
 		
+		//shapefile has to be loaded first now, so initial random monarch locations can be tested
+		//Teresa's 2017 data
+		//loadFeatures("data/TeresaTestData2.shp", context, geography);
+		//Des Moines Lobe model - Scen1 first time
+		//loadFeatures("data/DMLModel4LL.shp", context, geography);
+		//Des Moines Lobe model - Scen2
+		//loadFeatures("data/Spatial_Join_DML4_Counties5_UTMS2LL.shp", context, geography);
+		//Des Moines Lobe model - Scen3
+		//loadFeatures("data/Spatial_Join_DML4_Counties5_UTMS3LL.shp", context, geography);
+		//Des Moines Lobe model - Scen1 again with new improved shapefile
+		loadFeatures("data/Spatial_Join_DML4_Counties5_UTMLL.shp", context, geography);
 				
 		/**
 		//init coords are in a field in middle of test shapefile
+
 		//for first shapefile
 		Coordinate c = new Coordinate(-93.49, 42.065);
 		Coordinate c1 = new Coordinate(-93.490000001, 42.065);
@@ -101,7 +111,7 @@ public class ContextBuild implements ContextBuilder{
 		LineString ls = fac.createLineString(carray);
 		**/
 		
-		///**
+		/**
 		//for second shapefile and St Co shapefile
 		Coordinate c = new Coordinate(-93.61, 42.04);
 		Coordinate c1 = new Coordinate(-93.610000001, 42.04);
@@ -111,7 +121,7 @@ public class ContextBuild implements ContextBuilder{
 		carray[0]= new Coordinate(-93.61, 42.04);
 		carray[1]= new Coordinate(-93.610000001, 42.04);
 		LineString ls = fac.createLineString(carray);
-		//**/
+		**/
 		
 		/**
 		//for MS figure shapefile
@@ -257,6 +267,16 @@ public class ContextBuild implements ContextBuilder{
 		LineString ls = fac.createLineString(carray);
 		**/
 		
+		//Des Moines Lobe
+		Coordinate c = new Coordinate(-94.0, 42.5);
+		Coordinate c1 = new Coordinate(-94.0000001, 42.5);
+		Network <Object> net = (Network <Object>) context.getProjection("travel");
+		net.addEdge(c, c1);
+		Coordinate carray[] = new Coordinate[2]; 
+		carray[0]= new Coordinate(-94.0, 42.5);
+		carray[1]= new Coordinate(-94.0000001, 42.5);
+		LineString ls = fac.createLineString(carray);
+		
 				
 		MonarchPath mp = new MonarchPath(net.getEdge(c, c1),c,c1); 	
 		context.add(mp);
@@ -269,8 +289,6 @@ public class ContextBuild implements ContextBuilder{
 			Monarch monarch = new Monarch("M" + i);//, Monarch.initeggstolay);
 			context.add(monarch);
 			
-			boolean testboolean = false;
-			
 			//these random numbers should use a random number stream from RS library so sims can be replicated
 			
 			//first test shapefile
@@ -280,8 +298,8 @@ public class ContextBuild implements ContextBuilder{
 			//Coordinate coord = new Coordinate(-93.5490 - 0.1043* Math.random(),
 			//		42.0030 + 0.0794 * Math.random());
 			//Story County
-			Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
-					41.8634 + 0.3457 * Math.random());
+			//Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
+			//		41.8634 + 0.3457 * Math.random());
 			//MS figure shapefile
 			//Coordinate coord = new Coordinate(-93.327 - 0.042* Math.random(),
 			//		42.09 + 0.0347 * Math.random());
@@ -321,54 +339,29 @@ public class ContextBuild implements ContextBuilder{
 
 			
 			
-			//code being developed for random population of irregular shaped shapefiles
+			//code random population of irregular shaped shapefiles
+			boolean goodp = false;
+			Coordinate coord = null;
+			int pointcount = -1;
 			
-			/**
-			
-			while (testboolean == false) {
-				
-			//test coordinates for new random agent generator - coords are well outside farm progress boundaries
-			Coordinate coord = new Coordinate(-93.759 - 0.094 * Math.random(),
-					42.013 + 0.055 * Math.random());
-			//cast coordinate as point so I can use intersects method
-			Point p = new Point((CoordinateSequence) coord, fac);
-			p.intersects(g);
-			
-			//make a list of probEggs for polygons within 0m distance of coords 
-			//and if there is none, choose a new coord
-			//ArrayList probs = new ArrayList();
-			// need crs?  prob need to retrieve geography
-			//Context context = ContextUtils.getContext(this); 
-			//Geography<Object> geography = (Geography)context.getProjection("Monarchs"); 
-			
-			//GeographyWithin test = new GeographyWithin(geography, 0.001, coord);
-			
-									
-			for (Object obj : test.query()) {
-				if (obj instanceof ZoneAgent){
-					ZoneAgent zoneagent = (ZoneAgent)obj;
-					p.intersects(zoneagent);
-					//cast coord or zoneagent as Geometry to use Geometry.intersects
-					
-					//double probEggs = zoneagent.getprobEggs();
-					//probs.add(probEggs);
-				}
+			while (!goodp) {
+				//coordinates for random locations in a box around the shapefile 
+				//Teresa's Data
+				//coord = new Coordinate(-93.607 - 0.2175 * Math.random(),
+				//	41.9312 + 0.21 * Math.random());
+				//Des Moines Lobe
+				coord = new Coordinate(-93.0510 - 2.7661 * Math.random(),
+						41.5258 + 2.0136 * Math.random());
+				//cast coordinate as a JTS point
+				Point p = fac.createPoint(coord);
+				//query location around p to see if any polygons
+				GeographyWithin withinp = new GeographyWithin(geography, 0.01, p);
+				//boolean iterable checks if there is anything in withinp
+				goodp = withinp.query().iterator().hasNext();
+				pointcount++;
 			}
 			
-			//if size of probs is 0, then choose another
-			
-			if(probs.isEmpty()){
-				testboolean = false;
-			} else {
-				Point geom = fac.createPoint(coord);
-				geography.move(monarch, geom);
-				testboolean = true;
-			}
-			
-			}
-			
-			**/
-			
+			//System.out.println("Discarded Points for :  " + pointcount);
 			
 			Point geom = fac.createPoint(coord);
 			geography.move(monarch, geom);
@@ -376,7 +369,7 @@ public class ContextBuild implements ContextBuilder{
 			
 		}
 		
-		//Load features from a shapefile
+		//Load features from a shapefile - this section now occurs above, but these are saved for reference
 		
 		//first shapefile with original probEggs that are too high
 		//loadFeatures( "data/Testshapefile3.shp", context, geography);
@@ -391,7 +384,7 @@ public class ContextBuild implements ContextBuilder{
 		//2nd test shapefile
 		//loadFeatures("data/TestShapefile2latlon_sp.shp", context, geography);
 		//Full Story Co
-		loadFeatures("data/StoryCoB19_sp.shp", context, geography);
+		//loadFeatures("data/StoryCoB19_sp.shp", context, geography);
 		//Full Story Co with new probMove parameter - test case 1
 		//loadFeatures("data/StoryCo_probMove.shp", context, geography);
 		//Full Story Co with new probMove parameter - test case 2
@@ -406,8 +399,6 @@ public class ContextBuild implements ContextBuilder{
 		//loadFeatures("data/ToxScen1B.shp", context, geography);
 		//Tox Sims Scen 2
 		//loadFeatures("data/ToxScen2B.shp", context, geography);
-		//Teresa's 2017 data
-		//loadFeatures("data/TeresaTestData2.shp", context, geography);
 		//MCSP7
 		//loadFeatures("data/StoryCo_MCSP7_FINAL2.shp", context, geography);
 		//MCSP8
@@ -432,7 +423,14 @@ public class ContextBuild implements ContextBuilder{
 		//loadFeatures("data/Alec_Counties_1_Final.shp", context, geography);
 		//Brookes_Counties_1_Final.shp
 		//loadFeatures("data/Brookes_Counties_1_Final.shp", context, geography);
-		
+		//First Landscape Toxicology Sim
+		//loadFeatures("data/StoryCoToxFieldBuffer_Eli10IntLL.shp", context, geography);
+		//Second Landscape Toxicology Scenario with maximum augmentation
+		//loadFeatures("data/StoryCoToxFieldBufferMaxAugLL.shp", context, geography);
+		//Third Landscape Toxicology Scenario with medium augmentation
+		//loadFeatures("data/StoryCoToxFieldBufferMedAugLL.shp", context, geography);
+		//Fourth Landscape Toxicology Scenario with augmentation outside buffer
+		//loadFeatures("data/StoryCoToxFieldBufferAugOutsideLL.shp", context, geography);
 		return context;
 	}
 
@@ -485,10 +483,11 @@ public class ContextBuild implements ContextBuilder{
 				double zonearea = (double)feature.getAttribute("Shape_Area");
 				double probEggs = (double)feature.getAttribute("ProbEggs");
 				double probMove = (double)feature.getAttribute("probMove");
+				long GISPolyID = (long)feature.getAttribute("GISPolyID");
 				int cumulativeeggs = 0;
 				
 				//agent = new ZoneAgent(ID,Shape_Leng,name,cumulativeeggs,probEggs,zonearea);
-				agent = new ZoneAgent(ID,name,cumulativeeggs,probEggs,probMove,zonearea);
+				agent = new ZoneAgent(ID,name,cumulativeeggs,probEggs,probMove,zonearea,GISPolyID);
 				
 				//if (!geom.isValid()) System.out.println("Invalid geometry: " + feature.getID() + agent.OBJECTID_1);
 				

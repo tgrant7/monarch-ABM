@@ -111,10 +111,10 @@ public class Monarch {
 	//}
 	
 	//Story County - slightly outside - used for most purposes
-	static double xmin = -93.7005;
-	static double xmax = -93.2300;
-	static double ymin = 41.8605;
-	static double ymax = 42.2107;
+	//static double xmin = -93.7005;
+	//static double xmax = -93.2300;
+	//static double ymin = 41.8605;
+	//static double ymax = 42.2107;
 	
 	//MS figure - 1/2 mile outside
 	//static double xmin = -93.38;
@@ -139,6 +139,12 @@ public class Monarch {
 	//static double xmax = -93.59;
 	//static double ymin = 41.92;
 	//static double ymax = 42.15;
+
+	//Des Moines Lobe
+	static double xmin = -95.8171;
+	static double xmax = -93.051;
+	static double ymin = 41.5258;
+	static double ymax = 43.5394;
 
 	
 	//get context and geography
@@ -345,8 +351,8 @@ public class Monarch {
 						//if bounces too many times, that means it probably got stuck outside, so move to random loc inside
 						if (bouncecounter > 5){
 							//Story Co
-							Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
-									41.8634 + 0.3457 * Math.random());
+							//Coordinate coord = new Coordinate(-93.2319 - 0.4661* Math.random(),
+							//		41.8634 + 0.3457 * Math.random());
 							//MS figure
 							//Coordinate coord = new Coordinate(-93.327 - 0.042* Math.random(),
 							//		42.09 + 0.0347 * Math.random());
@@ -360,6 +366,26 @@ public class Monarch {
 							//Coordinate coord = new Coordinate(-93.607 - 0.2175*Math.random(),
 							//		41.9312 + 0.21*Math.random());
 							
+							//code random population of irregular shaped shapefiles
+							boolean goodp = false;
+							Coordinate coord = null;
+							
+							while (!goodp) {
+								//coordinates for random locations in a box around the shapefile 
+								//Teresa's 2017 Data
+								//coord = new Coordinate(-93.607 - 0.2175 * Math.random(),
+								//	41.9312 + 0.21 * Math.random());
+								//Des Moines Lobe
+								coord = new Coordinate(-93.0510 - 2.7661 * Math.random(),
+										41.5258 + 2.0136 * Math.random());
+								//cast coordinate as a JTS point
+								Point p = fac.createPoint(coord);
+								//query location around p to see if any polygons
+								GeographyWithin withinp = new GeographyWithin(geography, 0.01, p);
+								//boolean iterable checks if there is anything in withinp
+								goodp = withinp.query().iterator().hasNext();
+							}
+
 							Point bouncegeom = fac.createPoint(coord);
 							geography.move(this, bouncegeom);
 						}

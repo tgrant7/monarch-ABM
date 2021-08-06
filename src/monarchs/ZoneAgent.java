@@ -25,9 +25,10 @@ public class ZoneAgent {
 	private double probEggs;
 	private double probMove;
 	private double zonearea;
+	private long GISPolyID;
 	
 	public ZoneAgent(double ID, String name, int cumulativeeggs, 
-			double probEggs, double probMove, double zonearea){
+			double probEggs, double probMove, double zonearea, long GISPolyID){
 		this.ID = ID;
 		//this.OBJECTID_1 = OBJECTID_1;
 		this.name = name;
@@ -35,6 +36,8 @@ public class ZoneAgent {
 		this.probEggs = probEggs;
 		this.probMove = probMove;
 		this.zonearea = zonearea;
+		//I don't know why this is not like the others
+		this.GISPolyID = GISPolyID;
 	}
 	
 //	@ScheduledMethod(start = 1, interval = 1)
@@ -94,5 +97,9 @@ public class ZoneAgent {
 	
 	public double getArea(){
 		return zonearea;
+	}
+	
+	public long getGISPolyID() {
+		return GISPolyID;
 	}
 }
