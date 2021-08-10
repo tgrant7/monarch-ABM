@@ -1,9 +1,9 @@
 # monarch-ABM
 This GitHub repository contains the code for the agent-based model described in:  
 
-Grant, T.J., Parry, H.R., Zalucki, M.P. and Bradbury, S.P., 2018. Predicting monarch butterfly (Danaus plexippus) movement and egg-laying with a spatially-explicit agent-based model: the role of monarch perceptual range and spatial memory. Ecological Modelling, 374, pp.37-50. https://doi.org/10.1016/j.ecolmodel.2018.02.011
+<i>Grant, T.J., Parry, H.R., Zalucki, M.P. and Bradbury, S.P., 2018. Predicting monarch butterfly (Danaus plexippus) movement and egg-laying with a spatially-explicit agent-based model: the role of monarch perceptual range and spatial memory. Ecological Modelling, 374, pp.37-50.</i> https://doi.org/10.1016/j.ecolmodel.2018.02.011
 
-This model is implemented in Repast Simphony: https://repast.github.io/. Repast Simphony runs within the Eclipse IDE, which in turn uses the Java programming language. 
+This model is implemented in Repast Simphony: https://repast.github.io/. Repast Simphony runs within the Eclipse IDE, a platform for coding in the Java programming language. 
 
 For those unfamiliar with Eclipse and Repast Simphony, here is one way to get the model running:
 
