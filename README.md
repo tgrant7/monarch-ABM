@@ -1,23 +1,17 @@
 # monarch-ABM
-Code for the model described in Grant et al. (2018).  A spatially-explicit landscape-scale agent-based model of monarch butterfly movement and egg-laying implemented in Java in Repast Simphony 2.5.
+This GitHub repository contains the code for the agent-based model described in:  
+
+Grant, T.J., Parry, H.R., Zalucki, M.P. and Bradbury, S.P., 2018. Predicting monarch butterfly (Danaus plexippus) movement and egg-laying with a spatially-explicit agent-based model: the role of monarch perceptual range and spatial memory. Ecological Modelling, 374, pp.37-50. https://doi.org/10.1016/j.ecolmodel.2018.02.011
+
+This model is implemented in Repast Simphony: https://repast.github.io/. Repast Simphony runs within the Eclipse IDE, which in turn uses the Java programming language. 
 
 For those unfamiliar with Eclipse and Repast Simphony, here is one way to get the model running:
 
-Install Repast Simphony and Java SE Development Kit.  
+Install Repast Simphony (https://repast.github.io/download.html) and the recommended Java SE Development Kit (https://repast.github.io/requirements.html).  
 
-Create a folder in C:\RepastSimphony-2.5\models\ called Monarchs(or C:\Users\...\Documents\Repast\Monarchs?).  Copy the files from GitHub to this folder.  
+For Repast Simphony 2.7, released Sept 30, 2019, loading the monarch model is slightly different than in previous versions.  Download the monarch-ABM files from Github to somewhere on your computer and extract them.  In Repast, go to File>New>Other. Scroll down to Repast Simphony folder and select Repast Simphony Project.  This creates the project in Repast with the Repast nature.  Right click on the Monarchs folder in the Package Explorer and choose Import.  Select the File System option and navigate to the extracted Monarchs model.  Click Finish and it is now ready to run.  
 
-In Repast Simphony, select File -> Import.  Choose General -> Projects from Folder or Archive.  Set the import source as:  C:\RepastSimphony-2.5\models\Monarchs .  Select the box for the Monarchs folder and hit Finish.  
+You will need a shapefile for the monarch agents to fly around in. 
 
-Click on Java perspective in the upper right corner (the ReLogo perspective is the default)
-
-Right click on "Monarchs" in the package explorer to bring up context menu, go down to Repast Simphony and select Add Repast Simphony Nature.  From the same menu, select Source -> Organize Imports
-
-Select "Run Configurations..." from the context menu or green play button drop down menu.  In the left pane, find Java Application and click the down arrow next to it.  A submenu will open showing the Monarchs model.  Click on the Monarchs Model and hit Run.  
-
-From this point, consulting the Repast Simphony help files may be necessary.  Find the parameters tab in the lower left.  Enter whichever parameters you prefer, but pay special attention to the number of agents.  The defaul is 25, but start with 3.  It's easy to run out of memory.  Initialize and run the model.  You'll see movement paths displayed in yellow.  Output files will be written to C:\Users\...\Documents\Repast\Monarchs\output.  
-
-The shapefile stored here is for Story Co, Iowa, USA.  To run the model with a different shapefile, several changes have to be made to the code to define the boundaries of the shapefile and place the agents at their initial location.  Contact the authors with questions.  
-
-For Repast Simphony 2.7, released Sept 30, 2019, loading the monarch model is slightly different.  Download the files from github to somewhere on your computer and extract them.  In Repast, go to File>New>Other. Scroll down to Repast Simphony folder and select Repast Simphony Project.  This creates the project in Repast with the Repast nature.  Right click on the Monarchs folder in the Package Explorer and choose Import.  Select the File System option and navigate to the extracted Monarchs model.  Click Finish and it should be good to go.  
+Run the model using the green button or select the Monarchs Model to run. A new window will pop up that says "Monarchs - Repast Simphony." On the lower left, select the tab labeled "Parameters." These are all user-specified parameters for the model. Most or all should be familiar from the paper. "Range from max to min probMove" is the range between min and max probMove/probEggs values in the GIS shapefile. To test run the model on a desktop PC, set the number of agents to 3 or something similarly small. Then you hit initialize and then the model can be run. 
 
